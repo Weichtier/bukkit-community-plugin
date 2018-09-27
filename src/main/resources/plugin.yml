@@ -1,0 +1,12 @@
+name: Community
+version: 2.0-SNAPHOST
+author: Weichtier
+main: de.slowloris.community.main.Main
+commands:
+  setwarp:
+  setparticle:
+  build:
+  fly:
+  vanish:
+    aliases:
+    - v

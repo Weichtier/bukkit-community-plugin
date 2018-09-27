@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="community:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/community_jar</output-path>
+    <root id="root">
+      <element id="archive" name="community.jar">
+        <element id="module-output" name="community" />
+      </element>
+      <element id="library" level="project" name="NoteBlockApi-1.90-SNAPSHOT" />
+    </root>
+  </artifact>
+</component>
