@@ -5,7 +5,10 @@ import de.slowloris.community.commands.FlyCommand;
 import de.slowloris.community.commands.SetwarpCommand;
 import de.slowloris.community.commands.VanishCommand;
 import de.slowloris.community.listener.*;
+import de.slowloris.community.utils.InventoryUtils;
+import de.slowloris.community.utils.ItemBuilder;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -34,6 +37,16 @@ public class Main extends JavaPlugin {
         getCommand("build").setExecutor(new BuildCommand());
         getCommand("fly").setExecutor(new FlyCommand());
         getCommand("vanish").setExecutor(new VanishCommand());
+
+
+        InventoryUtils.setItemname("teleporter", "§8» §bTeleporter");
+        InventoryUtils.setItemname("speedoff", "§8» §bSpeed §8| §cDeaktiviert");
+        InventoryUtils.setItemname("speedon", "§8» §bSpeed §8| §aAktiviert");
+        InventoryUtils.setItemname("flyon", "§8» §eFlugmodus §8| §aAktiviert");
+        InventoryUtils.setItemname("flyoff", "§8» §eFlugmodus §8| §cDeaktiviert");
+        InventoryUtils.setItemname("hideron", "§8» §6Spieler Anzeigen §8| §aAlle");
+        InventoryUtils.setItemname("hidervip", "§8» §6Spieler Anzeigen §8| §5VIP");
+        InventoryUtils.setItemname("hideroff", "§8» §6Spieler Anzeigen §8| §cNiemand");
     }
 
     @Override

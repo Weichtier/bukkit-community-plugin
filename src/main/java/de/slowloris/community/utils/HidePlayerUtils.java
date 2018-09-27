@@ -24,7 +24,7 @@ public class HidePlayerUtils {
     }
     public static void hideVIP(Player p){
         for(Player all : Bukkit.getOnlinePlayers()){
-            if(!all.hasPermission("lb.hide.vip")){
+            if(!all.hasPermission("pt.vip")){
                 p.hidePlayer(all);
             }
         }

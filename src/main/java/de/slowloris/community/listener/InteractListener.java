@@ -34,43 +34,43 @@ public class InteractListener implements Listener {
         if(e.getItem().getItemMeta().getDisplayName() == null){
             return;
         }
-        if(p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§bTeleporter")){
+        if(p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(InventoryUtils.getItemName("teleporter"))){
             Inventory inv = Bukkit.createInventory(p, 9, "§bTeleporter");
             inv.setItem(2, ItemBuilder.newItem(Material.BEACON, 1, "§5§lBühne"));
             inv.setItem(6, ItemBuilder.newItem(Material.ENDER_PEARL, 1, "§5§lSpawn"));
-            if(p.hasPermission("community.spawn.vip")){
+            if(p.hasPermission("pt.vip")){
                 inv.setItem(4, ItemBuilder.newItem(Material.NETHER_STAR, 1, "§5§lBackstage"));
             }
             p.playSound(p.getLocation(), Sound.ITEM_PICKUP, 1.0F, 1.0F);
             p.openInventory(inv);
-        }else if(p.getItemInHand() != null && p.getInventory().getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§bSpeed §8» §cDeaktiviert")){
+        }else if(p.getItemInHand() != null && p.getInventory().getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(InventoryUtils.getItemName("speedoff"))){
             InventoryUtils.getSpeedoff().remove(p);
             InventoryUtils.giveItems(p);
             p.playSound(p.getLocation(), Sound.ITEM_PICKUP, 1.0F, 1.0F);
-        }else if(p.getInventory().getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§bSpeed §8» §aAktiviert")){
+        }else if(p.getInventory().getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(InventoryUtils.getItemName("speedon"))){
             InventoryUtils.getSpeedoff().add(p);
             InventoryUtils.giveItems(p);
             p.playSound(p.getLocation(), Sound.ITEM_PICKUP, 1.0F, 1.0F);
-        }else if(p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§bSpieler Anzeigen §8» §aAlle")){
+        }else if(p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(InventoryUtils.getItemName("hideron"))){
             HidePlayerUtils.hideVIP(p);
             InventoryUtils.getPlayerhider().put(p, "vip");
             InventoryUtils.giveItems(p);
             p.playSound(p.getLocation(), Sound.ITEM_PICKUP, 1.0F, 1.0F);
-        }else if(p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§bSpieler Anzeigen §8» §5VIP")){
+        }else if(p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(InventoryUtils.getItemName("hidervip"))){
             HidePlayerUtils.hidePlayer(p);
             InventoryUtils.getPlayerhider().put(p, "none");
             InventoryUtils.giveItems(p);
             p.playSound(p.getLocation(), Sound.ITEM_PICKUP, 1.0F, 1.0F);
-        }else if(p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§bSpieler Anzeigen §8» §cNiemand")){
+        }else if(p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(InventoryUtils.getItemName("hideroff"))){
             HidePlayerUtils.showPlayer(p);
             InventoryUtils.getPlayerhider().put(p, "all");
             InventoryUtils.giveItems(p);
             p.playSound(p.getLocation(), Sound.ITEM_PICKUP, 1.0F, 1.0F);
-        }else if(p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§bFlugmodus §8» §cDeaktiviert")){
+        }else if(p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(InventoryUtils.getItemName("flyoff"))){
             FlyCommand.fly.add(p);
             InventoryUtils.giveItems(p);
             p.playSound(p.getLocation(), Sound.ITEM_PICKUP, 1.0F, 1.0F);
-        }else if(p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§bFlugmodus §8» §Aaktiviert")){
+        }else if(p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(InventoryUtils.getItemName("flyon"))){
             FlyCommand.fly.remove(p);
             InventoryUtils.giveItems(p);
             p.playSound(p.getLocation(), Sound.ITEM_PICKUP, 1.0F, 1.0F);
