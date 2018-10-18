@@ -4,6 +4,7 @@ import de.slowloris.community.commands.FlyCommand;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.PlayerInventory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,6 +15,12 @@ public class InventoryUtils {
     private static HashMap<String, String> itemnames = new HashMap<String, String>();
     public static void giveItems(Player p){
         Inventory inv = p.getInventory();
+
+        ((PlayerInventory) inv).setHelmet(null);
+        ((PlayerInventory) inv).setChestplate(null);
+        ((PlayerInventory) inv).setLeggings(null);
+        ((PlayerInventory) inv).setBoots(null);
+
         inv.setItem(0, ItemBuilder.newItem(Material.GREEN_RECORD, 1, "§8» §bTeleporter"));
         if(p.hasPermission("community.fly")){
             if(getSpeedoff().contains(p)){
@@ -49,6 +56,17 @@ public class InventoryUtils {
         }else if(getPlayerhider().get(p).equalsIgnoreCase("none")){
             inv.setItem(8, ItemBuilder.newItem(Material.BLAZE_ROD, 1, "§8» §6Spieler Anzeigen §8| §cNiemand"));
         }
+    }
+
+    public static int buildItemPos(int x, int y){
+
+        x--;
+        y = (y - 1)*9;
+        int out = x + y;
+        if(out < 0){
+            out = 0;
+        }
+        return out;
     }
 
     public static ArrayList<Player> getSpeedoff() {

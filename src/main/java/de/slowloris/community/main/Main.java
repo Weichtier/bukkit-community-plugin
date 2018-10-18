@@ -1,22 +1,44 @@
 package de.slowloris.community.main;
 
-import de.slowloris.community.commands.BuildCommand;
-import de.slowloris.community.commands.FlyCommand;
-import de.slowloris.community.commands.SetwarpCommand;
-import de.slowloris.community.commands.VanishCommand;
+import de.slowloris.community.commands.*;
+import de.slowloris.community.events.EventManager;
 import de.slowloris.community.listener.*;
+import de.slowloris.community.music.MusicManager;
+import de.slowloris.community.utils.Effects;
 import de.slowloris.community.utils.InventoryUtils;
-import de.slowloris.community.utils.ItemBuilder;
+import de.slowloris.community.utils.Inventorys;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 public class Main extends JavaPlugin {
-    private static Main plugin;
+    private static Main instance;
+    private static Inventorys inventorys;
+    private static Effects effects;
+    private static EventManager eventManager;
+    private static MusicManager musicManager;
+    private static final String PREFIX = "§8| §5Community §8§l» §7";
     @Override
     public void onEnable() {
-        plugin = this;
+        instance = this;
+        inventorys = new Inventorys();
+        effects = new Effects();
+        eventManager = new EventManager();
+        musicManager = new MusicManager();
+
+        getConfig().options().copyDefaults(true);
+        if(!getMusicManager().getMusicFolder().exists()){
+            getMusicManager().getMusicFolder().mkdirs();
+        }
+
+        if(!getMusicManager().getFavouritesFolder().exists()){
+            getMusicManager().getFavouritesFolder().mkdirs();
+        }
+
+        saveConfig();
+
         getLogger().info("§7Plugin erfolgreich §aaktiviert!");
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new JoinListener(), this);
@@ -33,10 +55,14 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new TeleportListener(), this);
         pm.registerEvents(new ItemHeldListener(), this);
         pm.registerEvents(new ReloadListener(), this);
+        pm.registerEvents(new SneakListener(), this);
+        pm.registerEvents(new ProjectileHitListener(), this);
+        pm.registerEvents(new HungerListener(), this);
         getCommand("setwarp").setExecutor(new SetwarpCommand());
         getCommand("build").setExecutor(new BuildCommand());
         getCommand("fly").setExecutor(new FlyCommand());
         getCommand("vanish").setExecutor(new VanishCommand());
+        getCommand("event").setExecutor(new EventCommand());
 
 
         InventoryUtils.setItemname("teleporter", "§8» §bTeleporter");
@@ -54,7 +80,27 @@ public class Main extends JavaPlugin {
         getLogger().info("§7Plugin erfolgreich §cdeaktiviert");
     }
 
-    public static Main getPlugin() {
-        return plugin;
+    public static Main getInstance() {
+        return instance;
+    }
+
+    public static Inventorys getInventorys() {
+        return inventorys;
+    }
+
+    public static String getPrefix() {
+        return PREFIX;
+    }
+
+    public static Effects getEffects() {
+        return effects;
+    }
+
+    public static EventManager getEventManager() {
+        return eventManager;
+    }
+
+    public static MusicManager getMusicManager() {
+        return musicManager;
     }
 }

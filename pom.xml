@@ -28,6 +28,14 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!--NoteBlock API-->
+        <dependency>
+            <groupId>host.local</groupId>
+            <artifactId>noteblockapi</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/dependencies/NoteBlockAPI-1.2.3.1.jar</systemPath>
+        </dependency>
     </dependencies>
 
 </project>

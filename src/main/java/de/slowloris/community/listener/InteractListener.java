@@ -21,7 +21,7 @@ public class InteractListener implements Listener {
         if(e.getClickedBlock() != null && e.getClickedBlock().getState() instanceof Sign){
             Sign sign = (Sign) e.getClickedBlock().getState();
             if(sign.getLine(0).equalsIgnoreCase("§5Glückwunsch!")){
-                TpUtils.tpWarp(p, "Spawn");
+                LocationUtils.tpWarp(p, "Spawn");
             }
         }
         if(p.getItemInHand().getType().isBlock() && !getCanbuild().contains(p)){
@@ -35,7 +35,7 @@ public class InteractListener implements Listener {
             return;
         }
         if(p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(InventoryUtils.getItemName("teleporter"))){
-            Inventory inv = Bukkit.createInventory(p, 9, "§bTeleporter");
+            Inventory inv = Bukkit.createInventory(p, 9, "§b§lTeleporter");
             inv.setItem(2, ItemBuilder.newItem(Material.BEACON, 1, "§5§lBühne"));
             inv.setItem(6, ItemBuilder.newItem(Material.ENDER_PEARL, 1, "§5§lSpawn"));
             if(p.hasPermission("pt.vip")){
